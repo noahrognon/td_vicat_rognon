@@ -1,0 +1,100 @@
+﻿<section
+	id="fonctionnement"
+	class="relative overflow-hidden py-16 sm:py-20 bg-gradient-to-br from-[#0E1F38] via-[#0B1224] to-[#0B1224] text-white"
+>
+	<div class="absolute inset-0 grid-overlay opacity-40 pointer-events-none"></div>
+	<div class="absolute -left-10 top-10 h-48 w-48 rounded-full bg-leaf/20 blur-3xl"></div>
+	<div class="absolute right-4 bottom-10 h-52 w-52 rounded-full bg-cta/25 blur-3xl"></div>
+
+	<div class="section-shell space-y-6 relative">
+		<div class="max-w-3xl" data-animate="fade-up">
+			<p class="badge bg-white/10 border border-white/20 !text-white">En 4 étapes</p>
+			<h2 class="section-title !text-white">Comment ça marche ?</h2>
+			<p class="section-subtitle text-white/70">
+				Boîtes à Livres vous permet de trouver, de créer et de faire vivre des bibliothèques en libre-service autour
+				de vous en quelques étapes simples.
+			</p>
+		</div>
+
+		<div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
+			{[
+				{
+					title: 'Repérez une boîte à livres',
+					text: 'Entrez votre ville ou votre code postal et découvrez les boîtes à livres autour de vous.',
+					icon: (
+						<svg class="h-10 w-10 text-cta" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+							<path
+								d="M12 21s7-4.35 7-10a7 7 0 1 0-14 0c0 5.65 7 10 7 10Z"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></path>
+							<circle cx="12" cy="11" r="2.5"></circle>
+						</svg>
+					),
+				},
+				{
+					title: 'Déposez ou prenez un livre',
+					text: 'Déposez un livre que vous avez déjà lu, repartez avec une nouvelle histoire.',
+					icon: (
+						<svg class="h-10 w-10 text-leaf" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+							<path d="M4 5h12a4 4 0 0 1 4 4v10H8a4 4 0 0 1-4-4V5Z" stroke-linecap="round" stroke-linejoin="round"></path>
+							<path d="M4 5V3h12a4 4 0 0 1 4 4v2" stroke-linecap="round" stroke-linejoin="round"></path>
+							<path d="M8 9h8" stroke-linecap="round"></path>
+						</svg>
+					),
+				},
+				{
+					title: 'Partagez avec le quartier',
+					text: 'Laissez un petit mot, recommandez un livre, faites découvrir vos coups de cœur.',
+					icon: (
+						<svg class="h-10 w-10 text-ink" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+							<path d="M7 8h10M7 12h6" stroke-linecap="round"></path>
+							<path
+								d="M5 21a2 2 0 0 1-2-2V7a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2v8a2 2 0 0 1-2 2H8l-3 4Z"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></path>
+						</svg>
+					),
+				},
+				{
+					title: 'Proposez une nouvelle boîte',
+					text: 'Vous avez une boîte à livres chez vous, dans votre immeuble ou votre école ? Ajoutez-la à la carte en quelques clics.',
+					icon: (
+						<svg class="h-10 w-10 text-blue-500" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7">
+							<path
+								d="M12 20V9m0 0-3 3m3-3 3 3"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></path>
+							<path d="M5 20h14" stroke-linecap="round"></path>
+							<path
+								d="M5 11.5V7a2 2 0 0 1 2-2h6l6 6v6a2 2 0 0 1-2 2h-2"
+								stroke-linecap="round"
+								stroke-linejoin="round"
+							></path>
+						</svg>
+					),
+				},
+			].map((step, index) => (
+				<div
+					class="glass-card h-full p-5 flex flex-col gap-3 hover:-translate-y-1 transition-transform duration-300 tilt-card"
+					data-animate="fade-up"
+					data-delay={index * 0.08}
+					data-float
+				>
+					<div class="h-12 w-12 rounded-xl bg-cream flex items-center justify-center shadow-soft border border-white/70">
+						{step.icon}
+					</div>
+					<h3 class="font-display font-semibold text-lg text-ink">{step.title}</h3>
+					<p class="text-muted text-sm leading-relaxed flex-1">{step.text}</p>
+					<span class="text-sm font-semibold text-white">Étape {index + 1}</span>
+				</div>
+			))}
+		</div>
+
+		<div class="flex justify-start" data-animate="fade-up" data-delay="0.15">
+			<a href="#carte" class="cta-secondary bg-white/15 text-white border-white/20">Voir un exemple de boîte à livres</a>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,72 @@
+﻿<section id="inscription" class="py-16 sm:py-20 bg-gradient-to-br from-cream via-white to-[#dceaff] relative overflow-hidden">
+	<div class="absolute inset-0 pointer-events-none">
+		<div class="absolute -left-10 top-0 h-48 w-48 rounded-full bg-leaf/20 blur-3xl"></div>
+		<div class="absolute right-0 bottom-0 h-48 w-72 rounded-full bg-cta/20 blur-3xl"></div>
+	</div>
+	<div class="section-shell grid gap-8 lg:grid-cols-2 items-center relative">
+		<div class="space-y-4" data-animate="fade-up">
+			<p class="badge">Newsletter</p>
+			<h2 class="section-title">Restez informé des nouvelles boîtes à livres près de chez vous</h2>
+			<p class="section-subtitle">
+				Recevez une fois par mois les nouvelles boîtes ajoutées dans votre ville et des idées pour faire vivre la
+				lecture dans votre quartier.
+			</p>
+			<ul class="space-y-2 text-text/90">
+				<li class="flex items-start gap-2">
+					<span class="mt-1 h-2 w-2 rounded-full bg-cta"></span>
+					<span>Cartes mises à jour et nouvelles boîtes.</span>
+				</li>
+				<li class="flex items-start gap-2">
+					<span class="mt-1 h-2 w-2 rounded-full bg-leaf"></span>
+					<span>Idées d'animations, ateliers, échanges thématiques.</span>
+				</li>
+				<li class="flex items-start gap-2">
+					<span class="mt-1 h-2 w-2 rounded-full bg-blue-500"></span>
+					<span>Temps forts associatifs et scolaires.</span>
+				</li>
+			</ul>
+		</div>
+
+		<div class="glass-card p-6 shadow-soft tilt-card" data-animate="fade-up" data-delay="0.1" data-float>
+			<form id="newsletter-form" class="space-y-4">
+				<div class="space-y-2">
+					<label for="newsletter-email" class="text-sm font-semibold text-ink">Email *</label>
+					<input
+						id="newsletter-email"
+						name="newsletterEmail"
+						type="email"
+						required
+						class="w-full rounded-xl border border-text/15 bg-white px-4 py-3 focus:border-cta focus:ring-2 focus:ring-cta/40"
+						placeholder="vous@exemple.fr"
+					/>
+					<p class="text-xs text-red-500 hidden" data-error-for="newsletter-email">Merci d'entrer un email valide.</p>
+				</div>
+
+				<div class="space-y-2">
+					<label for="newsletter-city" class="text-sm font-semibold text-ink">Ma ville *</label>
+					<select
+						id="newsletter-city"
+						name="newsletterCity"
+						required
+						class="w-full rounded-xl border border-text/15 bg-white px-4 py-3 focus:border-cta focus:ring-2 focus:ring-cta/40"
+					>
+						<option value="">Sélectionnez</option>
+						<option>Paris</option>
+						<option>Lyon</option>
+						<option>Marseille</option>
+						<option>Bordeaux</option>
+						<option>Lille</option>
+						<option>Autre ville</option>
+					</select>
+					<p class="text-xs text-red-500 hidden" data-error-for="newsletter-city">Merci de sélectionner une ville.</p>
+				</div>
+
+				<button type="submit" class="cta-primary w-full">Je m'inscris gratuitement</button>
+				<p id="newsletter-success" class="text-sm text-emerald-600 hidden">Inscription prise en compte, merci !</p>
+				<p class="text-xs text-muted">
+					Aucun spam, uniquement des actualités sur les boîtes à livres et la lecture de quartier.
+				</p>
+			</form>
+		</div>
+	</div>
+</section>

@@ -1,0 +1,82 @@
+﻿<section
+	id="communaute"
+	class="py-16 sm:py-20 bg-gradient-to-br from-[#f1f5ff] via-white to-[#e3edff] relative overflow-hidden"
+>
+	<div class="absolute inset-0 pointer-events-none">
+		<div class="absolute -top-8 right-10 h-56 w-56 rounded-full bg-leaf/20 blur-3xl"></div>
+		<div class="absolute bottom-0 left-6 h-48 w-72 rounded-full bg-cta/15 blur-3xl"></div>
+	</div>
+	<div class="section-shell space-y-10 relative">
+		<div class="max-w-3xl" data-animate="fade-up">
+			<p class="badge">Communauté</p>
+			<h2 class="section-title">Ils font vivre les boîtes à livres</h2>
+			<p class="section-subtitle">
+				Lecteurs, voisins, associations, écoles… la communauté s'agrandit chaque jour.
+			</p>
+		</div>
+
+		<div class="grid gap-6 md:grid-cols-3">
+			{[
+				{
+					name: 'Marie',
+					role: '32 ans, habitante du centre-ville',
+					quote: "Grâce à la boîte à livres au bout de ma rue, je découvre des romans que je n'aurais jamais achetés.",
+					color: 'bg-gradient-to-br from-cta/10 via-white to-leaf/10',
+				},
+				{
+					name: 'Hassan',
+					role: "Parent d'élève",
+					quote: 'On dépose régulièrement des livres pour enfants, et les autres familles font pareil. Les enfants adorent.',
+					color: 'bg-gradient-to-br from-leaf/10 via-white to-cta/5',
+				},
+				{
+					name: 'Association Lire Ensemble',
+					role: 'Collectif local',
+					quote: 'Nous avons créé trois boîtes à livres dans la ville et la plateforme nous permet de les rendre visibles.',
+					color: 'bg-gradient-to-br from-blue-50 via-white to-leaf/10',
+				},
+			].map((testimonial, index) => (
+				<div
+					class={`glass-card p-5 shadow-soft flex flex-col gap-3 border-white/80 ${testimonial.color} tilt-card`}
+					data-animate="fade-up"
+					data-delay={index * 0.1}
+					data-float
+				>
+					<div class="flex items-center gap-3">
+						<div class="h-12 w-12 rounded-full bg-ink text-white flex items-center justify-center font-display text-lg">
+							{testimonial.name[0]}
+						</div>
+						<div>
+							<p class="font-display font-semibold text-ink">{testimonial.name}</p>
+							<p class="text-xs text-muted">{testimonial.role}</p>
+						</div>
+					</div>
+					<p class="text-text/90 leading-relaxed text-sm">{testimonial.quote}</p>
+				</div>
+			))}
+		</div>
+
+		<div class="glass-card p-6 bg-white/80 border-white/70 shadow-soft" data-animate="fade-up" data-delay="0.1">
+			<div class="flex flex-col md:flex-row items-center justify-between gap-6">
+				<div class="space-y-2">
+					<h3 class="font-display text-2xl font-semibold text-ink">Chiffres clés</h3>
+					<p class="text-muted">Des échanges mesurables qui grandissent chaque semaine.</p>
+				</div>
+				<div class="grid grid-cols-1 sm:grid-cols-3 gap-6 w-full md:w-auto">
+					{[
+						{ label: 'boîtes à livres référencées', value: 1200, suffix: '+' },
+						{ label: 'échanges de livres', value: 350000, suffix: '+' },
+						{ label: 'associations et écoles impliquées', value: 400, suffix: '+' },
+					].map((stat, index) => (
+						<div class="text-center px-4 py-3 rounded-lg bg-cream/70" data-animate="fade-up" data-delay={index * 0.05}>
+							<p class="text-3xl font-display font-bold text-ink counter" data-counter={stat.value} data-suffix={stat.suffix}>
+								{stat.value}{stat.suffix}
+							</p>
+							<p class="text-sm text-muted">{stat.label}</p>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

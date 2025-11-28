@@ -1,0 +1,139 @@
+@import url('https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;500;600&family=Poppins:wght@600;700&family=Montserrat:wght@600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+	scroll-behavior: smooth;
+	background-color: #f1f5ff;
+	color: #0c1224;
+}
+
+body {
+	@apply font-body bg-cream text-text antialiased;
+}
+
+.section-shell {
+	@apply max-w-6xl mx-auto px-4 sm:px-6 lg:px-8;
+}
+
+.glass-card {
+	@apply bg-white/90 backdrop-blur-lg shadow-soft rounded-2xl border border-white/80;
+}
+
+.pill {
+	@apply inline-flex items-center gap-2 rounded-full bg-white text-sm text-text px-4 py-2 shadow-soft;
+}
+
+.cta-primary {
+	@apply inline-flex items-center justify-center px-5 py-3 rounded-full bg-gradient-to-r from-cta to-leaf text-white font-semibold transition shadow-[0_15px_40px_rgba(21,198,194,0.28)] hover:-translate-y-0.5 hover:shadow-[0_18px_45px_rgba(14,36,81,0.25)] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-cta/70;
+}
+
+.cta-secondary {
+	@apply inline-flex items-center justify-center px-5 py-3 rounded-full border border-ink/10 text-text font-semibold bg-white/90 transition hover:bg-white hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-ink/10;
+}
+
+.anchor-link {
+	@apply text-text/80 hover:text-ink transition font-medium;
+}
+
+.section-title {
+	@apply text-3xl sm:text-4xl font-display font-bold text-ink mb-4;
+}
+
+.section-subtitle {
+	@apply text-lg text-muted max-w-2xl;
+}
+
+.badge {
+	@apply inline-flex items-center gap-2 text-sm font-semibold bg-ink/5 text-ink px-3 py-1 rounded-full;
+}
+
+.pattern-bg {
+	background-image: radial-gradient(circle at 1px 1px, rgba(11, 18, 36, 0.08) 1px, transparent 0);
+	background-size: 28px 28px;
+}
+
+.neon-line {
+	background: linear-gradient(90deg, rgba(21, 198, 194, 0.45), rgba(14, 36, 81, 0.55));
+	height: 2px;
+	width: 100%;
+}
+
+.grid-overlay {
+	background-image: linear-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px),
+		linear-gradient(90deg, rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+	background-size: 32px 32px;
+}
+
+.noise {
+	background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160' viewBox='0 0 160 160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.7' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.06'/%3E%3C/svg%3E");
+}
+
+.tilt-card {
+	transform-style: preserve-3d;
+	transition: transform 0.4s ease, box-shadow 0.3s ease;
+}
+
+.tilt-card:hover {
+	transform: translateY(-6px) rotateX(3deg) rotateY(-3deg);
+	box-shadow: 0 20px 50px rgba(0, 0, 0, 0.12);
+}
+
+.animated-gradient {
+	background: radial-gradient(circle at 20% 20%, rgba(21, 198, 194, 0.24), transparent 32%),
+		radial-gradient(circle at 80% 10%, rgba(14, 36, 81, 0.22), transparent 28%),
+		radial-gradient(circle at 50% 80%, rgba(255, 255, 255, 0.08), transparent 40%),
+		linear-gradient(135deg, rgba(11, 18, 36, 0.8), rgba(14, 36, 81, 0.78));
+	animation: gradientShift 12s ease-in-out infinite alternate;
+}
+
+@keyframes gradientShift {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 50% 100%;
+	}
+	100% {
+		background-position: 100% 50%;
+	}
+}
+
+.magnetic {
+	transition: transform 0.12s ease, box-shadow 0.2s ease;
+}
+
+.floating-cta {
+	@apply fixed z-50 right-4 bottom-4 md:right-8 md:bottom-8 bg-ink text-white px-4 py-3 sm:px-5 sm:py-3 rounded-2xl shadow-[0_12px_30px_rgba(0,0,0,0.2)] flex items-center gap-3 border border-white/10;
+}
+
+.floating-cta .pulse {
+	box-shadow: 0 0 0 0 rgba(21, 198, 194, 0.45);
+	animation: pulseGlow 2s infinite;
+}
+
+.toast {
+	@apply px-4 py-3 rounded-xl shadow-lg text-sm font-semibold flex items-center gap-2;
+}
+
+.toast-success {
+	@apply bg-emerald-600 text-white;
+}
+
+.toast-error {
+	@apply bg-rose-600 text-white;
+}
+
+@keyframes pulseGlow {
+	0% {
+		box-shadow: 0 0 0 0 rgba(21, 198, 194, 0.45);
+	}
+	70% {
+		box-shadow: 0 0 0 20px rgba(21, 198, 194, 0);
+	}
+	100% {
+		box-shadow: 0 0 0 0 rgba(21, 198, 194, 0);
+	}
+}

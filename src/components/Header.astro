@@ -1,0 +1,41 @@
+---
+import logo from '../assets/logo-livup.svg';
+---
+
+<header class="sticky top-0 z-50 backdrop-blur bg-cream/90 border-b border-white/70">
+	<div class="section-shell flex items-center justify-between gap-4 py-4">
+		<a href="#top" class="flex items-center gap-3 group">
+			<img src={logo.src} alt="LIV'UP" class="h-12 w-auto drop-shadow" loading="lazy" />
+			
+		</a>
+
+		<nav class="hidden md:flex items-center gap-6 text-sm">
+			<a class="anchor-link" href="#fonctionnement">Fonctionnement</a>
+			<a class="anchor-link" href="#carte">Carte</a>
+			<a class="anchor-link" href="#communaute">Communauté</a>
+			<a class="anchor-link" href="#faq">FAQ</a>
+			<a class="anchor-link" href="#inscription">S'inscrire</a>
+		</nav>
+
+		<div class="hidden md:flex items-center gap-3">
+			<a href="#inscription" class="cta-secondary">Découvrir</a>
+			<a href="#inscription" class="cta-primary">S'inscrire gratuitement</a>
+		</div>
+
+		<div class="flex md:hidden items-center gap-3">
+			<a href="#inscription" class="cta-primary text-sm px-4 py-2">S'inscrire</a>
+		</div>
+	</div>
+
+	<div class="md:hidden border-t border-white/60">
+		<div class="section-shell overflow-x-auto py-2">
+			<div class="flex gap-4 text-sm whitespace-nowrap">
+				<a class="anchor-link" href="#fonctionnement">Fonctionnement</a>
+				<a class="anchor-link" href="#carte">Carte</a>
+				<a class="anchor-link" href="#communaute">Communauté</a>
+				<a class="anchor-link" href="#faq">FAQ</a>
+				<a class="anchor-link" href="#inscription">S'inscrire</a>
+			</div>
+		</div>
+	</div>
+</header>

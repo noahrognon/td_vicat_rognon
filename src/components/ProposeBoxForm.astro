@@ -1,0 +1,99 @@
+﻿<section id="proposer" class="py-16 sm:py-20 bg-gradient-to-br from-[#0b1224] via-[#0e1f38] to-[#123058] text-white relative overflow-hidden">
+	<div class="absolute inset-0 grid-overlay opacity-30 pointer-events-none"></div>
+	<div class="absolute top-8 left-10 h-40 w-40 rounded-full bg-leaf/20 blur-3xl"></div>
+	<div class="absolute bottom-6 right-10 h-48 w-48 rounded-full bg-cta/20 blur-3xl"></div>
+	<div class="section-shell space-y-8 relative">
+		<div class="max-w-3xl" data-animate="fade-up">
+			<p class="badge bg-white/10 border border-white/20 !text-white">Ajoutez la vôtre</p>
+			<h2 class="section-title !text-white">Vous avez une boîte à livres ? Rendez-la visible.</h2>
+			<p class="section-subtitle text-white/70">
+				Que vous soyez un particulier, une association, une école ou une mairie, vous pouvez ajouter votre boîte à
+				livres à la carte en quelques minutes.
+			</p>
+		</div>
+
+		<div class="glass-card p-6 shadow-soft" data-animate="fade-up" data-delay="0.1">
+			<form id="propose-form" class="space-y-4">
+				<div class="grid gap-4 sm:grid-cols-2">
+					<div class="space-y-2">
+						<label for="box-name" class="text-sm font-semibold text-ink">Nom de la boîte à livres *</label>
+						<input
+							id="box-name"
+							name="boxName"
+							type="text"
+							required
+							class="w-full rounded-xl border border-text/15 bg-white px-4 py-3 focus:border-cta focus:ring-2 focus:ring-cta/40"
+							placeholder="Ex : Boîte des Tilleuls"
+						/>
+						<p class="text-xs text-red-500 hidden" data-error-for="box-name">Ce champ est requis.</p>
+					</div>
+					<div class="space-y-2">
+						<label for="box-type" class="text-sm font-semibold text-ink">Type de lieu *</label>
+						<select
+							id="box-type"
+							name="boxType"
+							required
+							class="w-full rounded-xl border border-text/15 bg-white px-4 py-3 focus:border-cta focus:ring-2 focus:ring-cta/40"
+						>
+							<option value="">Sélectionnez</option>
+							<option>Particulier</option>
+							<option>Association</option>
+							<option>École</option>
+							<option>Mairie</option>
+							<option>Commerce</option>
+							<option>Autre</option>
+						</select>
+						<p class="text-xs text-red-500 hidden" data-error-for="box-type">Merci de choisir un type.</p>
+					</div>
+				</div>
+
+				<div class="space-y-2">
+					<label for="box-address" class="text-sm font-semibold text-ink">Adresse ou description de localisation *</label>
+					<input
+						id="box-address"
+						name="boxAddress"
+						type="text"
+						required
+						class="w-full rounded-xl border border-text/15 bg-white px-4 py-3 focus:border-cta focus:ring-2 focus:ring-cta/40"
+						placeholder="Adresse ou indications (parc, école, entrée d'immeuble...)"
+					/>
+					<p class="text-xs text-red-500 hidden" data-error-for="box-address">Merci d'indiquer une localisation.</p>
+				</div>
+
+				<div class="space-y-2">
+					<label for="box-description" class="text-sm font-semibold text-ink">Description courte *</label>
+					<textarea
+						id="box-description"
+						name="boxDescription"
+						required
+						rows="3"
+						class="w-full rounded-xl border border-text/15 bg-white px-4 py-3 focus:border-cta focus:ring-2 focus:ring-cta/40"
+						placeholder="Horaires, accès, type de livres, conseils..."
+					></textarea>
+					<p class="text-xs text-red-500 hidden" data-error-for="box-description">Merci d'ajouter une description.</p>
+				</div>
+
+				<div class="space-y-2">
+					<label for="box-email" class="text-sm font-semibold text-ink">Email de contact (facultatif)</label>
+					<input
+						id="box-email"
+						name="boxEmail"
+						type="email"
+						class="w-full rounded-xl border border-text/15 bg-white px-4 py-3 focus:border-cta focus:ring-2 focus:ring-cta/40"
+						placeholder="email@email.fr"
+					/>
+					<p class="text-xs text-red-500 hidden" data-error-for="box-email">Format d'email invalide.</p>
+				</div>
+
+				<label class="flex items-start gap-3 text-sm text-text/90">
+					<input id="box-consent" type="checkbox" required class="mt-1 h-4 w-4 rounded border-text/30 text-cta focus:ring-cta" />
+					<span>J'accepte que ces informations soient rendues publiques sur la carte.</span>
+				</label>
+				<p class="text-xs text-red-500 hidden" data-error-for="box-consent">Cette case est obligatoire.</p>
+
+				<button type="submit" class="cta-primary w-full sm:w-auto">Proposer ma boîte à livres</button>
+				<p id="propose-success" class="text-sm text-emerald-600 hidden">Merci ! Votre proposition est prête à être publiée.</p>
+			</form>
+		</div>
+	</div>
+</section>

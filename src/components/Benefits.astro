@@ -1,0 +1,65 @@
+﻿<section class="py-16 sm:py-20 bg-gradient-to-br from-[#0b1224] via-[#0e1f38] to-[#123058] text-white relative overflow-hidden">
+	<div class="absolute inset-0 grid-overlay opacity-30 pointer-events-none"></div>
+	<div class="absolute top-10 right-6 h-44 w-44 rounded-full bg-cta/25 blur-3xl"></div>
+	<div class="absolute bottom-6 left-10 h-56 w-56 rounded-full bg-leaf/25 blur-3xl"></div>
+	<div class="section-shell space-y-10 relative">
+		<div class="max-w-3xl" data-animate="fade-up">
+			<p class="badge bg-white/10 border border-white/15 !text-white">Valeurs</p>
+			<h2 class="section-title !text-white">Pourquoi les boîtes à livres changent la vie d'un quartier ?</h2>
+			<p class="section-subtitle text-white/70">Un geste simple, des impacts multiples.</p>
+		</div>
+
+		<div class="grid gap-6 md:grid-cols-2 lg:grid-cols-3">
+			{[
+				{
+					title: 'Économie',
+					text: 'Accédez à de nouveaux livres sans dépenser un centime.',
+					color: 'bg-cta/15',
+				},
+				{
+					title: 'Écologie',
+					text: 'Donner une seconde vie aux livres, c\'est réduire le gaspillage et la production.',
+					color: 'bg-leaf/20',
+				},
+				{
+					title: 'Lien social',
+					text: 'Les boîtes à livres deviennent des points de rencontre et d\'échange dans le quartier.',
+					color: 'bg-blue-50',
+				},
+				{
+					title: 'Éducation',
+					text: 'Donnez envie de lire aux enfants, partagez des albums, des BD, des documentaires.',
+					color: 'bg-emerald-50',
+				},
+				{
+					title: 'Culture locale',
+					text: 'Faites circuler des livres d\'auteurs locaux, des initiatives associatives, des fanzines.',
+					color: 'bg-amber-50',
+				},
+			].map((benefit, index) => (
+				<div
+					class={`glass-card p-5 shadow-soft border-white/80 ${benefit.color} hover:-translate-y-1 transition-transform tilt-card`}
+					data-animate="fade-up"
+					data-delay={index * 0.08}
+					data-float
+				>
+					<h3 class="font-display text-lg font-semibold text-ink">{benefit.title}</h3>
+					<p class="text-sm text-muted mt-2">{benefit.text}</p>
+				</div>
+			))}
+		</div>
+
+		<div class="glass-card p-6 bg-cream/60 border-white/80 shadow-soft" data-animate="fade-up" data-delay="0.12">
+			<div class="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+				<div>
+					<p class="badge mb-2">Associations & collectivités</p>
+					<h3 class="font-display text-xl font-semibold text-ink">Pour les associations et collectivités</h3>
+					<p class="text-muted mt-2">
+						Valorisez vos actions citoyennes et animez vos quartiers avec un projet simple et visible.
+					</p>
+				</div>
+				<a href="#proposer" class="cta-secondary bg-white/15 text-ink border-text/10">Mettre en avant mes boîtes</a>
+			</div>
+		</div>
+	</div>
+</section>

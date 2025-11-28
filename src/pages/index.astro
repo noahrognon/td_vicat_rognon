@@ -1,11 +1,419 @@
----
-import Welcome from '../components/Welcome.astro';
+﻿---
 import Layout from '../layouts/Layout.astro';
+import Header from '../components/Header.astro';
+import Hero from '../components/Hero.astro';
+import HowItWorks from '../components/HowItWorks.astro';
+import MapSection from '../components/MapSection.astro';
+import Benefits from '../components/Benefits.astro';
+import Testimonials from '../components/Testimonials.astro';
+import CarouselSection from '../components/CarouselSection.astro';
+import ProposeBoxForm from '../components/ProposeBoxForm.astro';
+import Newsletter from '../components/Newsletter.astro';
+import FAQ from '../components/FAQ.astro';
+import FinalCTA from '../components/FinalCTA.astro';
+import Footer from '../components/Footer.astro';
 
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
 <Layout>
-	<Welcome />
+	<Header />
+	<main class="overflow-hidden">
+		<Hero />
+		<HowItWorks />
+		<MapSection />
+		<Benefits />
+		<Testimonials />
+		<CarouselSection />
+		<ProposeBoxForm />
+		<Newsletter />
+		<FAQ />
+		<FinalCTA />
+	</main>
+	<Footer />
+
+	<script type="module">
+		import gsap from 'gsap';
+		import ScrollTrigger from 'gsap/ScrollTrigger';
+
+		if (typeof window !== 'undefined') {
+			gsap.registerPlugin(ScrollTrigger);
+
+			const animateHero = () => {
+				const tl = gsap.timeline({ defaults: { ease: 'power3.out' } });
+				tl.from('.hero-title', { opacity: 0, y: 40, duration: 0.9 })
+					.from('.hero-subtitle', { opacity: 0, y: 30, duration: 0.8 }, '-=0.4')
+					.from('.hero-cta', { opacity: 0, y: 24, duration: 0.7 }, '-=0.35')
+					.from('.hero-cta-secondary', { opacity: 0, y: 24, duration: 0.7 }, '-=0.45')
+					.from('.hero-illustration', { opacity: 0, y: 40, duration: 0.9 }, '-=0.2');
+
+				gsap.to('.hero-illustration', {
+					y: -6,
+					duration: 2.5,
+					repeat: -1,
+					yoyo: true,
+					ease: 'sine.inOut',
+				});
+			};
+
+			const animateOnScroll = () => {
+				document.querySelectorAll('[data-animate]').forEach((el) => {
+					const delay = parseFloat(el.dataset.delay || '0');
+					gsap.from(el, {
+						opacity: 0,
+						y: 40,
+						duration: 0.9,
+						ease: 'power3.out',
+						delay,
+						scrollTrigger: {
+							trigger: el,
+							start: 'top 85%',
+						},
+					});
+				});
+			};
+
+			const initCounters = () => {
+				document.querySelectorAll('.counter').forEach((counter) => {
+					const target = parseInt(counter.dataset.counter || '0', 10);
+					const suffix = counter.dataset.suffix || '';
+					const counterObj = { value: 0 };
+
+					ScrollTrigger.create({
+						trigger: counter,
+						start: 'top 85%',
+						once: true,
+						onEnter: () => {
+							gsap.to(counterObj, {
+								value: target,
+								duration: 1.6,
+								ease: 'power1.out',
+								onUpdate: () => {
+									counter.textContent = `${Math.floor(counterObj.value)}${suffix}`;
+								},
+								onComplete: () => {
+									counter.textContent = `${target}${suffix}`;
+								},
+							});
+						},
+					});
+				});
+			};
+
+			const initFloating = () => {
+				document.querySelectorAll('[data-float]').forEach((el, index) => {
+					gsap.to(el, {
+						y: 8,
+						x: 4,
+						duration: 3 + index * 0.2,
+						repeat: -1,
+						yoyo: true,
+						ease: 'sine.inOut',
+						delay: index * 0.1,
+					});
+				});
+			};
+
+			const initParallax = () => {
+				const targets = document.querySelectorAll('[data-parallax]');
+				if (!targets.length) return;
+				window.addEventListener('pointermove', (event) => {
+					const { innerWidth, innerHeight } = window;
+					const dx = (event.clientX - innerWidth / 2) / innerWidth;
+					const dy = (event.clientY - innerHeight / 2) / innerHeight;
+					targets.forEach((el) => {
+						const depth = parseFloat(el.dataset.parallax || '16');
+						gsap.to(el, {
+							x: dx * depth,
+							y: dy * depth,
+							duration: 0.6,
+							ease: 'sine.out',
+						});
+					});
+				});
+			};
+
+			const initMarkerPulse = () => {
+				document.querySelectorAll('.marker').forEach((marker, index) => {
+					gsap.to(marker, {
+						scale: 1.08,
+						duration: 1.4,
+						repeat: -1,
+						yoyo: true,
+						ease: 'sine.inOut',
+						delay: index * 0.12,
+					});
+				});
+			};
+
+			const initMagnetic = () => {
+				document.querySelectorAll('[data-magnetic]').forEach((el) => {
+					const strength = 18;
+					el.addEventListener('mousemove', (event) => {
+						const rect = el.getBoundingClientRect();
+						const x = event.clientX - rect.left - rect.width / 2;
+						const y = event.clientY - rect.top - rect.height / 2;
+						gsap.to(el, { x: x / strength, y: y / strength, duration: 0.2, ease: 'power2.out' });
+					});
+					el.addEventListener('mouseleave', () => {
+						gsap.to(el, { x: 0, y: 0, duration: 0.3, ease: 'power3.out' });
+					});
+				});
+			};
+
+			const initSmoothScroll = () => {
+				document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+					anchor.addEventListener('click', (event) => {
+						const href = anchor.getAttribute('href');
+						if (!href || href === '#') return;
+						const target = document.querySelector(href);
+						if (target) {
+							event.preventDefault();
+							target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+						}
+					});
+				});
+			};
+
+			const initAccordions = () => {
+				const closeItem = (item) => {
+					const button = item.querySelector('button');
+					const content = item.querySelector('[data-accordion-content]');
+					const icon = item.querySelector('.accordion-icon');
+					if (!button || !content) return;
+					button.setAttribute('aria-expanded', 'false');
+					gsap.to(content, { height: 0, opacity: 0, duration: 0.3, ease: 'power2.inOut' });
+					if (icon) {
+						icon.textContent = '+';
+						gsap.to(icon, { rotate: 0, duration: 0.25, ease: 'power2.out' });
+					}
+				};
+
+				const openItem = (item) => {
+					const button = item.querySelector('button');
+					const content = item.querySelector('[data-accordion-content]');
+					const icon = item.querySelector('.accordion-icon');
+					if (!button || !content) return;
+					button.setAttribute('aria-expanded', 'true');
+					gsap.fromTo(
+						content,
+						{ height: 0, opacity: 0 },
+						{ height: content.scrollHeight, opacity: 1, duration: 0.35, ease: 'power2.out' }
+					);
+					if (icon) {
+						icon.textContent = '-';
+						gsap.to(icon, { rotate: 45, duration: 0.25, ease: 'power2.out' });
+					}
+				};
+
+				document.querySelectorAll('[data-accordion]').forEach((item) => {
+					const button = item.querySelector('button');
+					const content = item.querySelector('[data-accordion-content]');
+					if (!button || !content) return;
+					gsap.set(content, { height: 0, opacity: 0 });
+					button.addEventListener('click', () => {
+						const isOpen = button.getAttribute('aria-expanded') === 'true';
+						document.querySelectorAll('[data-accordion]').forEach((other) => {
+							if (other !== item) closeItem(other);
+						});
+						if (isOpen) {
+							closeItem(item);
+						} else {
+							openItem(item);
+						}
+					});
+				});
+			};
+
+			const validateEmail = (value) => /\S+@\S+\.\S+/.test(value);
+
+			const toggleError = (id, show) => {
+				const error = document.querySelector(`[data-error-for="${id}"]`);
+				if (error) {
+					error.classList.toggle('hidden', !show);
+				}
+			};
+
+			const initProposeForm = () => {
+				const form = document.getElementById('propose-form');
+				const success = document.getElementById('propose-success');
+				if (!form) return;
+				const emailInput = document.getElementById('box-email');
+				if (emailInput) {
+					emailInput.addEventListener('input', () => toggleError('box-email', emailInput.value ? !validateEmail(emailInput.value) : false));
+				}
+				form.addEventListener('submit', (event) => {
+					event.preventDefault();
+					let hasError = false;
+					const requiredIds = ['box-name', 'box-type', 'box-address', 'box-description'];
+					requiredIds.forEach((id) => {
+						const field = document.getElementById(id);
+						const invalid = !field || !field.value.trim();
+						toggleError(id, invalid);
+						if (invalid) hasError = true;
+					});
+					const consent = document.getElementById('box-consent');
+					if (consent) {
+						const invalidConsent = !consent.checked;
+						toggleError('box-consent', invalidConsent);
+						if (invalidConsent) hasError = true;
+					}
+					const emailInput = document.getElementById('box-email');
+					if (emailInput && emailInput.value && !validateEmail(emailInput.value)) {
+						toggleError('box-email', true);
+						hasError = true;
+					} else {
+						toggleError('box-email', false);
+					}
+					if (!hasError) {
+						form.reset();
+						if (success) {
+							success.classList.remove('hidden');
+							setTimeout(() => success.classList.add('hidden'), 3500);
+						}
+						showToast('Votre boîte à livres est prête à être publiée !', 'success');
+					}
+				});
+			};
+
+			const initNewsletterForm = () => {
+				const form = document.getElementById('newsletter-form');
+				const success = document.getElementById('newsletter-success');
+				if (!form) return;
+				const email = document.getElementById('newsletter-email');
+				const city = document.getElementById('newsletter-city');
+				if (email) {
+					email.addEventListener('input', () => toggleError('newsletter-email', !validateEmail(email.value)));
+				}
+				if (city) {
+					city.addEventListener('change', () => toggleError('newsletter-city', !city.value));
+				}
+				form.addEventListener('submit', (event) => {
+					event.preventDefault();
+					let hasError = false;
+					if (email && !validateEmail(email.value)) {
+						toggleError('newsletter-email', true);
+						hasError = true;
+					} else {
+						toggleError('newsletter-email', false);
+					}
+					if (city && !city.value) {
+						toggleError('newsletter-city', true);
+						hasError = true;
+					} else {
+						toggleError('newsletter-city', false);
+					}
+					if (!hasError) {
+						form.reset();
+						if (success) {
+							success.classList.remove('hidden');
+							setTimeout(() => success.classList.add('hidden'), 3000);
+						}
+						showToast('Merci ! Vous êtes inscrit(e) à la newsletter.', 'success');
+					}
+				});
+			};
+
+			const initScrollProgress = () => {
+				const bar = document.getElementById('scroll-progress');
+				if (!bar) return;
+				const update = () => {
+					const scrollTop = window.scrollY;
+					const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+					const progress = docHeight > 0 ? (scrollTop / docHeight) * 100 : 0;
+					bar.style.width = `${progress}%`;
+					requestAnimationFrame(update);
+				};
+				update();
+			};
+
+			const initFloatingCTA = () => {
+				const fab = document.getElementById('floating-cta');
+				if (!fab) return;
+				let visible = false;
+				const show = () => {
+					if (visible) return;
+					visible = true;
+					fab.classList.remove('pointer-events-none');
+					gsap.to(fab, { y: 0, opacity: 1, duration: 0.4, ease: 'power3.out' });
+				};
+				const hide = () => {
+					if (!visible) return;
+					visible = false;
+					fab.classList.add('pointer-events-none');
+					gsap.to(fab, { y: 16, opacity: 0, duration: 0.3, ease: 'power2.out' });
+				};
+				ScrollTrigger.create({
+					start: 'top+=400 top',
+					end: 'bottom bottom',
+					onEnter: show,
+					onLeaveBack: hide,
+				});
+			};
+
+			const initHeroGallery = () => {
+				const mainImg = document.getElementById('hero-main-img');
+				const thumbs = document.querySelectorAll('[data-hero-thumb]');
+				if (!mainImg || !thumbs.length) return;
+				let index = 0;
+				const sources = Array.from(thumbs).map((btn) => btn.dataset.heroThumb).filter(Boolean);
+				const changeTo = (src) => {
+					if (!src || mainImg.src.includes(src)) return;
+					gsap.to(mainImg, { opacity: 0, duration: 0.25, ease: 'power2.out', onComplete: () => {
+						mainImg.src = src;
+						gsap.to(mainImg, { opacity: 1, duration: 0.35, ease: 'power2.out' });
+					}});
+				};
+				thumbs.forEach((btn, idx) => {
+					btn.addEventListener('click', () => {
+						index = idx;
+						changeTo(btn.dataset.heroThumb);
+					});
+				});
+				setInterval(() => {
+					index = (index + 1) % sources.length;
+					changeTo(sources[index]);
+				}, 5500);
+			};
+
+			const showToast = (message, type = 'success') => {
+				const container = document.getElementById('toast-container');
+				if (!container) return;
+				const toast = document.createElement('div');
+				toast.className = `toast ${type === 'success' ? 'toast-success' : 'toast-error'}`;
+				toast.textContent = message;
+				container.appendChild(toast);
+				gsap.fromTo(toast, { y: -10, opacity: 0 }, { y: 0, opacity: 1, duration: 0.3, ease: 'power2.out' });
+				setTimeout(() => {
+					gsap.to(toast, {
+						y: -10,
+						opacity: 0,
+						duration: 0.3,
+						ease: 'power2.in',
+						onComplete: () => toast.remove(),
+					});
+				}, 2800);
+			};
+
+			animateHero();
+			animateOnScroll();
+			initCounters();
+			initFloating();
+			initParallax();
+			initMarkerPulse();
+			initMagnetic();
+			initSmoothScroll();
+			initAccordions();
+			initProposeForm();
+			initNewsletterForm();
+			initScrollProgress();
+			initFloatingCTA();
+			initHeroGallery();
+		}
+	</script>
 </Layout>
+
+
+
+

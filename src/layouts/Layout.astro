@@ -1,22 +1,35 @@
+---
+import '../styles/global.css';
+---
+
 <!doctype html>
-<html lang="en">
+<html lang="fr">
 	<head>
 		<meta charset="UTF-8" />
 		<meta name="viewport" content="width=device-width" />
 		<link rel="icon" type="image/svg+xml" href="/favicon.svg" />
 		<meta name="generator" content={Astro.generator} />
-		<title>Astro Basics</title>
+		<title>Boîtes à Livres — Partagez vos livres, faites vivre votre quartier</title>
+		<meta
+			name="description"
+			content="Découvrez, partagez et ajoutez des boîtes à livres près de chez vous. Une plateforme citoyenne pour faire circuler les histoires et animer votre quartier."
+		/>
 	</head>
-	<body>
+	<body class="min-h-screen bg-cream text-text">
+		<div id="scroll-progress" class="fixed top-0 left-0 h-1 w-0 z-[70] bg-gradient-to-r from-cta via-leaf to-cta"></div>
 		<slot />
+		<a
+			href="#inscription"
+			id="floating-cta"
+			class="floating-cta translate-y-10 opacity-0 pointer-events-none"
+			aria-label="Commencer gratuitement"
+		>
+			<span class="h-3 w-3 rounded-full bg-cta pulse"></span>
+			<div class="flex flex-col leading-tight">
+				<span class="text-xs text-white/70">Prêt à partager ?</span>
+				<span class="text-sm font-semibold">Commencer gratuitement</span>
+			</div>
+		</a>
+		<div id="toast-container" class="fixed top-4 right-4 z-[80] space-y-2"></div>
 	</body>
 </html>
-
-<style>
-	html,
-	body {
-		margin: 0;
-		width: 100%;
-		height: 100%;
-	}
-</style>

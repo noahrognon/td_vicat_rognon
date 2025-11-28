@@ -1,0 +1,40 @@
+---
+import logo from '../assets/logo-livup.svg';
+---
+
+<footer class="bg-blue-900 text-white py-10">
+	<div class="section-shell grid gap-8 md:grid-cols-3">
+		<div class="space-y-3">
+			<div class="flex items-center gap-3">
+				<img src={logo.src} alt="LIV'UP" class="h-12 w-auto" loading="lazy" />
+				
+			</div>
+			<p class="text-sm text-white/70">Partagez, échangez et animez votre quartier autour de la lecture.</p>
+		</div>
+		<div class="grid grid-cols-2 gap-4 text-sm">
+			<div class="space-y-2">
+				<a href="#top" class="block hover:text-leaf transition">Accueil</a>
+				<a href="#fonctionnement" class="block hover:text-leaf transition">Fonctionnement</a>
+				<a href="#carte" class="block hover:text-leaf transition">Carte</a>
+				<a href="#faq" class="block hover:text-leaf transition">FAQ</a>
+			</div>
+			<div class="space-y-2">
+				<a href="#" class="block hover:text-leaf transition">À propos</a>
+				<a href="#inscription" class="block hover:text-leaf transition">Contact</a>
+				<a href="#" class="block hover:text-leaf transition">Mentions légales</a>
+				<a href="#" class="block hover:text-leaf transition">Politique de confidentialité</a>
+			</div>
+		</div>
+		<div class="space-y-3">
+			<p class="text-sm font-semibold">Suivez le projet</p>
+			<div class="flex items-center gap-3">
+				{['FB', 'IG', 'X'].map((item) => (
+					<span class="h-9 w-9 rounded-full bg-white/10 flex items-center justify-center text-xs font-semibold border border-white/20">
+						{item}
+					</span>
+				))}
+			</div>
+			<p class="text-xs text-white/60">&copy; {new Date().getFullYear()} LIV'UP.</p>
+		</div>
+	</div>
+</footer>
